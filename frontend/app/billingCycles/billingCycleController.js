@@ -1,21 +1,39 @@
 (function(){
 
 	angular.module('primeiraApp')
-	.controller('BillingCycleCtrl', ['$http' ,BillingCycleCtrl ])
+	.controller('BillingCycleCtrl', ['$http', 'msgs',BillingCycleCtrl ])
 
-	function BillingCycleCtrl($http) {
+	function BillingCycleCtrl($http, msgs) {
+
+
+		const url = 'http://localhost:3003/api/billingCycles'
 		const vm = this
 
+		vm.start = function (){
+			vm.billingCycles = {}
+			$http.get(url).then(({data})=>{
+				console.log(data)
+
+				vm.billingCycles = data
+			}, ({data})=>{
+				console.log(data)
+			})
+
+
+		}
+
 		vm.create = function (){
-			const url = 'http://localhost:3003/api/billingCycles'
-			$http.post(url, vm.billingCycle).then((res)=>{
+			$http.post(url, vm.billingCycle).then(({data})=>{
 
 				vm.billingCycle = {}
-				console.log('Sucesso!')
+				msgs.addSuccess(`Ciclo ${data.name} inserido com sucesso`)
 
-			}, (err)=>{
-				if (err) console.log(err);
+			}, ({data})=>{
+
+				msgs.addError(data.errors)
 			})
 		}
+
+		vm.start()
 	}
 })()
