@@ -33,7 +33,11 @@
 			addMsg(msgs, 'Erro', 'error')
 		}
 
-		return { addSuccess, addError }
+		function addWarn(msgs) {
+			addMsg(msgs, 'Alerta', 'warning')
+		}
+
+		return { addSuccess, addError, addWarn }
 	}
 
 	return { MsgsFactory }

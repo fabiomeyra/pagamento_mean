@@ -12,3 +12,7 @@ html {
 .table-actions{
 	width: 140px;
 }
+
+.toast-top-right {
+	top : 5rem;
+}

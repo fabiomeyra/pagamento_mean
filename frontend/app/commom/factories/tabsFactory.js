@@ -15,7 +15,6 @@
 			owner.tabDelete = tabDelete
 			owner.tabList = tabList
 
-
 		}
 
 
