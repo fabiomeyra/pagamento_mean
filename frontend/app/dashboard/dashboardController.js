@@ -1,16 +1,17 @@
 (function(){
 	angular.module('primeiraApp').controller('DashboardCtrl', [
 		'$http',
+		'consts',
 		DashboardController
 		])
 
-	function DashboardController($http){
+	function DashboardController($http, consts){
 
 		const vm = this
 
 		vm.getSummary = function(){
 
-			const url = 'http://localhost:3003/api/billingSummary'
+			const url = `${consts.apiUrl}/billingSummary`
 			$http.get(url).then(response=>{
 
 			//ao receber a resposta da requisição, o método já vai extrair as variáveis credit e debt, assimn não é preciso response.data.credit ou response.data.debt.

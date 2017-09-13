@@ -1,12 +1,19 @@
 (function(){
 
 	angular.module('primeiraApp')
-	.controller('BillingCycleCtrl', ['$http', '$location','msgs' ,'tabs',BillingCycleCtrl ])
+		.controller('BillingCycleCtrl', [
+		'$http',
+		'$location',
+		'msgs',
+		'tabs',
+		'consts',
+		BillingCycleCtrl
+	])
 
-	function BillingCycleCtrl($http, $location, msgs, tabs) {
+	function BillingCycleCtrl($http, $location, msgs, tabs, consts) {
 
 
-		const url = 'http://localhost:3003/api/billingCycles'
+		const url = `${consts.apiUrl}/billingCycles`
 		const vm = this
 
 		this.url = angular.copy(url)

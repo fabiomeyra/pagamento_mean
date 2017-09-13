@@ -6,14 +6,15 @@
   "scripts": {
     "dev": "nodemon",
     "production": "pm2 start loader.js --name backend"
-
   },
   "author": "@fabiomeyra",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-query-int": "^1.0.1",
+    "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.11.5",
     "mongoose-paginate": "^5.0.3",
