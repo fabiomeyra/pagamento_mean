@@ -1,6 +1,6 @@
 
 html {
-	background-color: #ecf0f5
+	background-color: #d2d6de
 }
 
 .main-footer {
@@ -15,4 +15,8 @@ html {
 
 .toast-top-right {
 	top : 5rem;
+}
+
+.login-box {
+	height: 100%
 }
