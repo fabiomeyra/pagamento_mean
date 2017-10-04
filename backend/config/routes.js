@@ -32,5 +32,4 @@ module.exports = (server)=>{
 
 	//faz com que a /billingSummary atenda requisições get. e roda a função passada como parâmetro
 	protectedApi.route('/billingSummary').get(billingSummaryService.getSummary);
-
 }

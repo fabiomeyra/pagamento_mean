@@ -6,7 +6,7 @@ html {
 .main-footer {
 	position: fixed;
 	bottom: 0px;
-	width: 100%
+	width: 100%;
 }
 
 .table-actions{
@@ -18,5 +18,9 @@ html {
 }
 
 .login-box {
-	height: 100%
+	height: 100%;
+}
+
+.sidebar-menu>li{
+	cursor: pointer;
 }

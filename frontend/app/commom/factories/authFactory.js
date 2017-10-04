@@ -13,6 +13,7 @@
 			  submit('login', user, callback)
 		}
 		function submit(url, user, callback) {
+			console.log(user) 
 			  $http.post(`${consts.oapiUrl}/${url}`, user)
 			  .then(resp => {
 				  localStorage.setItem(consts.userKey, JSON.stringify(resp.data))
@@ -39,6 +40,6 @@
 	}
 
 
-	  return {login, submit, logout, user, getUser}
+	  return {login, logout, user, getUser, signup}
   }
 })()

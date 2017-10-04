@@ -12,25 +12,27 @@ const sendErrorsFromDB = (res, dbErrors) => {
   return res.status(400).json({errors})
 }
 
-
 const login = (req, res, next) => {
+
 	  const email = req.body.email || ''
 	  const password = req.body.password || ''
-	  User.findOne({email}, (err, user) => {
-		  if(err) {
+	  User.findOne({email}, function(err, user){
+		console.log(err)
+		if(err) {
 			  return sendErrorsFromDB(res, err)
-		  } else if (user && bcrypt.compareSync(password, user.password)) {
-			  const token = jwt.sign(user, env.authSecret, {
+		  } else if(user && bcrypt.compareSync(password, user.password)) {
+			console.log('deu certo cara'); 
+			const token = jwt.sign(user, env.authSecret, {
 				  expiresIn: "1 day"
 			  })
 			  const { name, email } = user
 			  res.json({ name, email, token })
 		  } else {
+			console.log("erro: "+req.body.email);
 			  return res.status(400).send({errors: ['Usuário/Senha inválidos']})
 		  }
 	  })
 }
-
 
 const validateToken = (req, res, next) => {
 	  const token = req.body.token || ''
@@ -65,7 +67,8 @@ const signup = (req, res, next) => {
 	  }
 
 	  User.findOne({email}, (err, user) => {
-	  	  if(err) {
+	  	console.log(user); 
+	  	if(err) {
 	  		  return sendErrorsFromDB(res, err)
 	  	  } else if (user) {
 	  		  return res.status(400).send({errors: ['Usuário já cadastrado.']})

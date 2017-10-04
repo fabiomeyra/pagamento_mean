@@ -12,7 +12,7 @@
 
 		vm.loginMode = true
 
-		vm.chageMode = ()=> vm.loginMode = !vm.loginMode
+		vm.changeMode = ()=> vm.loginMode = !vm.loginMode
 
 		vm.getUser = () => (auth.getUser())
 
@@ -22,6 +22,5 @@
 		vm.login = () => auth.login(vm.user, err => err ? msgs.addError(err) : msgs.addSuccess('Sucesso!'))
 
 		vm.signup = () => auth.signup(vm.user, err => err ? msgs.addError(err) : msgs.addSuccess('Sucesso!'))
-
 	}
 })()
