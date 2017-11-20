@@ -10,7 +10,7 @@ gulp.task('server', ['watch'], ()=>{
 	gulp.src('public').pipe(webserver({
 		livereload: true, //faz com q o navegador realize um reload sempre que um arquivo mudar
 		port: 3000,
-		open: true //abre o navegador ao iniciar o serviço
+		open: false //abre o navegador ao iniciar o serviço
 	}))
 
 })

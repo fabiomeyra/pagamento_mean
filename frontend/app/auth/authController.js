@@ -16,11 +16,13 @@
 
 		vm.getUser = () => (auth.getUser())
 
-		vm.logout = () => auth.logout(() => msgs.addSuccess('Sucesso!'))
+		vm.logout = () => auth.logout(() => {
+			console.log('chamou a callback do logout')
+			$location.path('/')
+		})
 
+		vm.login = () => auth.login(vm.user, err => err ? msgs.addError(err) : $location.path('/'))
 
-		vm.login = () => auth.login(vm.user, err => err ? msgs.addError(err) : msgs.addSuccess('Sucesso!'))
-
-		vm.signup = () => auth.signup(vm.user, err => err ? msgs.addError(err) : msgs.addSuccess('Sucesso!'))
+		vm.signup = () => auth.signup(vm.user, err => err ? msgs.addError(err) : $location.path('/'))
 	}
 })()

@@ -21,6 +21,6 @@ html {
 	height: 100%;
 }
 
-.sidebar-menu>li{
+.sidebar-menu>li>a{
 	cursor: pointer;
 }

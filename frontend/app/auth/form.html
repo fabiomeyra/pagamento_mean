@@ -4,11 +4,11 @@
 
 	<div class="login-box-body">
 	  <p class="login-box-msg">Bem vindo!</p>
-	  <form>
+	  <form autocomplete="off">
 
 		<auth-field id="authName" model="auth.user.name" type="input"
 		placeholder="Informe o Nome" hide="auth.loginMode" icon="user"></auth-field>
-		<auth-field id="authEmail" model="auth.user.email" icon="envelope" type="email"
+		<auth-field id="authEmail" model="auth.user.email" icon="envelope" type="input"
 		placeholder="Informe o E-mail"></auth-field>
 
 		<auth-field id="authPass" model="auth.user.password" type="password"
@@ -34,4 +34,4 @@
 		</a>
 	</div>
 </div>
-	<!-- /.login-box-body -->
+<!-- /.login-box-body -->

@@ -6,6 +6,16 @@
 		  ])
 	  function AuthFactory($http, consts) {
 
+		let user = null
+
+		function getUser() {
+			if(!user){
+				user = JSON.parse(localStorage.getItem(consts.userKey))
+			}
+
+			return user
+		}
+
 		function signup(user, callback) {
 			  submit('signup', user, callback)
 		}
@@ -18,28 +28,42 @@
 			  .then(resp => {
 				  localStorage.setItem(consts.userKey, JSON.stringify(resp.data))
 				  $http.defaults.headers.common.Authorization = resp.data.token
-				  if (callback) callback(null, resp.data)
+				user.name=null
+				user.email=null
+				user.password=null
+				user.confirm_password=null
+				if (callback) callback(null, resp.data)
 			  }, function (resp) {
 				  if (callback) callback(resp.data.errors, null)
 			  })
 		}
 
-		function logout(callback) {
-			  localStorage.removeItem(consts.userKey)
+		function logout(callback) { 
+			user = null
+				localStorage.removeItem(consts.userKey)
 			  $http.defaults.headers.common.Authorization = ''
-			  if (callback) callback(null)
+			  if (callback) callback()
+		}
+
+		function validateToken(token, callback) {
+
+			if(token){
+				$http.post(`${consts.oapiUrl}/validateToken`, {token})
+				.then( resp =>{
+					if(!resp.data.valid){
+						logout()
+					} else{
+						$http.defaults.headers.common.Authorization = getUser().token
+					}
+						if(callback) callback(null, resp.data.valid)
+					}, resp =>{
+						if (callback) callback(resp.data.errors)
+					})
+			}
+
 		}
 
 
-	let user = null
-	function getUser() {
-		  if(!user) {
-			  user = JSON.parse(localStorage.getItem(consts.userKey))
-		  }
-		  return user
-	}
-
-
-	  return {login, logout, user, getUser, signup}
+	  return {login, logout, user, getUser, signup, validateToken}
   }
 })()
